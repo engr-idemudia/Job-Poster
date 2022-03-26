@@ -1,0 +1,44 @@
+@layout('layouts.main')
+
+@section('extracss')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+{{ style('forms') }}
+@endsection
+
+@section('title')
+JobPostr - Join Now
+@endsection
+
+@section('content')
+  <h1>Join now</h1>
+  <div class="job-container">
+      <form action="{{ route('UserController.create') }}" method="POST">
+          {{ csrfField() }}
+
+        <label form="username">Username</label>
+        <input type="text" name="username"  placeholder="Type username" value="{{ old('username', '') }}">
+        @if(hasErrorFor('username'))
+            <span>
+              {{ getErrorFor('username')}}
+            </span>
+        @endif
+
+        <label form="email">Email</label>
+        <input type="email" name="email" placeholder="email@example.com" value="{{ old('email', '') }}">
+        @if(hasErrorFor('email'))
+            <span>
+              {{ getErrorFor('email')}}
+            </span>
+        @endif
+        
+        <label form="password">Password</label>
+        <input type="password" name="password" placeholder="alpha-Numeric" >
+        @if(hasErrorFor('password'))
+            <span>
+              {{ getErrorFor('password')}}
+            </span>
+        @endif
+
+        <button type="submit">Join now</button>
+      </form>
+  </div>
+@endsection
